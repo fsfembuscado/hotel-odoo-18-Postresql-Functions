@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List View for Room Types -->
+    <record id="view_hotel_roomtypes_list" model="ir.ui.view">
+        <field name="name">hotel.roomtypes.list</field>
+        <field name="model">hotel.roomtypes</field>
+        <field name="arch" type="xml">
+            <list string="Room Types List">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="daily_charges"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View for Room Types -->
+    <record id="view_hotel_roomtypes_form" model="ir.ui.view">
+        <field name="name">hotel.roomtypes.form</field>
+        <field name="model">hotel.roomtypes</field>
+        <field name="arch" type="xml">
+            <form string="Room Types Form">
+                <sheet>
+                    <notebook>
+                        <page string="Information">
+                            <group>
+                                <field name="name"/>
+                                <field name="description"/>
+                            </group>
+                        </page>
+                        <page string="Daily Charges">
+                            <field name="daily_charges"/>
+                        </page>
+                        <page string="Images">
+                            <group>
+                                <field name="room_image" widget="image" options="{'preview_image': 'room_image'}"/>
+                                <field name="bathroom_image" widget="image" options="{'preview_image': 'bathroom_image'}"/>
+                            </group>
+                        </page>
+                        <page string="Rooms">
+                            <field name="room_ids" readonly="1">
+                                <list editable="bottom">
+                                    <field name="name"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to Open Room Types -->
+    <record id="action_hotel_roomtypes" model="ir.actions.act_window">
+        <field name="name">Room Types</field>
+        <field name="res_model">hotel.roomtypes</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p>Create and Manage Room Types for the Hotel.</p>
+        </field>
+    </record>
+
+    <!-- Menu Item for Room Types -->
+    <menuitem id="menu_hotel_roomtypes"
+              name="Room Types"
+              parent="hotel.menu_hotel_masterlists"
+              action="action_hotel_roomtypes"/>
+</odoo>
